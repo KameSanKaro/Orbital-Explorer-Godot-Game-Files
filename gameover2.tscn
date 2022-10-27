@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://tryagain2.gd" type="Script" id=1]
+[ext_resource path="res://System.tscn" type="PackedScene" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="gameover2" type="Label" parent="."]
+margin_left = 404.0
+margin_top = 31.0
+margin_right = 486.0
+margin_bottom = 49.0
+rect_scale = Vector2( 2.09648, 1.92316 )
+custom_colors/font_color = Color( 1, 0.92549, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.572549, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+text = "Game Over!"
+
+[node name="text2" type="Label" parent="."]
+margin_left = 119.0
+margin_top = 72.0001
+margin_right = 596.0
+margin_bottom = 105.0
+rect_scale = Vector2( 1.57286, 1.59996 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.643137, 1, 1 )
+text = "Helios-3 is not supposed to observe interstellar space. You escaped orbit! 
+Replaying attempt..."
+align = 1
+
+[node name="tryagain2" type="Button" parent="."]
+margin_left = 423.0
+margin_top = 138.0
+margin_right = 549.0
+margin_bottom = 185.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.898039, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0, 0, 1 )
+text = "Try Again"
+script = ExtResource( 1 )
+
+[node name="System" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="tryagain2" to="tryagain2" method="_on_tryagain2_pressed"]

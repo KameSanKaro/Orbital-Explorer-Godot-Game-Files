@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://start-button.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 43.0
+rect_scale = Vector2( 25.6081, 14.195 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="menu-title" type="Label" parent="."]
+margin_left = 298.0
+margin_top = 87.0
+margin_right = 484.0
+margin_bottom = 101.0
+rect_scale = Vector2( 2.40783, 2.13496 )
+custom_colors/font_color = Color( 1, 0.960784, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.470588, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+text = "Welcome to Orbital Explorer!"
+align = 1
+
+[node name="menu-text" type="Label" parent="."]
+margin_left = 80.0
+margin_top = 153.0
+margin_right = 831.0
+margin_bottom = 235.0
+rect_scale = Vector2( 1.19101, 1.24906 )
+text = "Humanity has given you the task of determining the orbital trajectory of Helios-3, an advanced observatory satellite. 
+Helios-3 is tasked with collecting the maximum amount of data from the binary star system, AC-276; to achieve this, 
+Helios-3 should be in a stable close-proximity orbit around both of the stars. 
+
+Good luck determining the optimal trajectory, do not dissappoint the scientists back home!"
+align = 1
+
+[node name="start-button" type="Button" parent="."]
+margin_left = 466.0
+margin_top = 285.0
+margin_right = 516.0
+margin_bottom = 305.0
+rect_scale = Vector2( 1.91626, 1.7437 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.678431, 0.129412, 0.129412, 1 )
+custom_colors/font_color_pressed = Color( 0.705882, 0.709804, 0.184314, 1 )
+text = "START"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="start-button" to="start-button" method="_on_startbutton_pressed"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://PulseGlow.shader" type="Shader" id=1]
+[ext_resource path="res://star2_1.material" type="Material" id=2]
+[ext_resource path="res://star1_1.material" type="Material" id=3]
+[ext_resource path="res://starmodel1.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://satellite.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://System.gd" type="Script" id=8]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.4
+
+[sub_resource type="ShaderMaterial" id=5]
+render_priority = 10
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 1, 0.423529, 0, 1 )
+shader_param/Saturation = 1.0
+shader_param/PulseRate = 0.7
+shader_param/PulseIntensity = 0.12
+shader_param/Opacity = 0.5
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="ShaderMaterial" id=6]
+render_priority = 10
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0, 0.25098, 1, 1 )
+shader_param/Saturation = 1.0
+shader_param/PulseRate = 0.8
+shader_param/PulseIntensity = 0.3
+shader_param/Opacity = 0.5
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+background_energy = 0.2
+ambient_light_color = Color( 1, 1, 1, 1 )
+glow_enabled = true
+glow_intensity = 2.0
+glow_strength = 2.0
+glow_bloom = 1.0
+glow_high_quality = true
+adjustment_enabled = true
+adjustment_saturation = 2.0
+
+[node name="System" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="Star_1" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 384.4, 0, 0 )
+can_sleep = false
+linear_velocity = Vector3( 0, 300, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Star_1"]
+transform = Transform( 41.4296, 0, 0, 0, 40.1392, 0, 0, 0, 40.1712, 0, 0, 0.0152186 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Star_1"]
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+material/1 = SubResource( 5 )
+
+[node name="Area" type="Area" parent="Star_1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Star_1/Area"]
+transform = Transform( 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Star_2" type="RigidBody" parent="."]
+linear_velocity = Vector3( 0, -184.561, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Star_2"]
+transform = Transform( 51.787, 0, 0, 0, 50.174, 0, 0, 0, 50.214, 0, 0, 0.0152186 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Star_2"]
+transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 2 )
+material/1 = SubResource( 6 )
+
+[node name="Camera" type="Camera" parent="Star_2"]
+transform = Transform( -0.939597, -0.292359, 0.178, -0.15204, 0.822405, 0.54821, -0.306662, 0.488033, -0.817179, 128.831, 249.761, -394.243 )
+far = 8192.0
+
+[node name="Area" type="Area" parent="Star_2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Star_2/Area"]
+transform = Transform( 15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Satellite" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 192.2, 0, -96.1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Satellite"]
+transform = Transform( 7.82691, 0, 2.38419e-07, 0, 2.2595, 0, -2.38419e-07, 0, 5.7762, -5.96046e-08, 2.39247, -2.09687 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Satellite"]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+mesh = ExtResource( 6 )
+
+[node name="Camera Anchor" type="Spatial" parent="Satellite"]
+transform = Transform( 1, 0, 0, 0, 0.986069, 0.166339, 0, -0.166339, 0.986069, 0, 9.84615, 12.4356 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="scorelabel" type="Label" parent="."]
+margin_left = 35.0
+margin_top = 24.0
+margin_right = 75.0
+margin_bottom = 38.0
+rect_scale = Vector2( 1.54084, 1.32987 )
+text = "Score:"
+
+[node name="score" type="Label" parent="."]
+margin_left = 98.0
+margin_top = 22.0
+margin_right = 138.0
+margin_bottom = 36.0
+rect_scale = Vector2( 1.61321, 1.59709 )
+custom_colors/font_color = Color( 0.992157, 1, 0, 1 )
+text = "0"
+
+[connection signal="body_entered" from="Star_1/Area" to="." method="_on_star1_body_entered"]
+[connection signal="body_entered" from="Star_2/Area" to="." method="_on_star2_body_entered"]

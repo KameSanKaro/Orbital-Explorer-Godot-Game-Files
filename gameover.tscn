@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://tryagain.gd" type="Script" id=1]
+[ext_resource path="res://System.tscn" type="PackedScene" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="title" type="Label" parent="."]
+margin_left = 412.0
+margin_top = 38.0
+margin_right = 493.0
+margin_bottom = 52.0
+rect_scale = Vector2( 2.16199, 1.79878 )
+custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.494118, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+text = "You crashed!"
+
+[node name="text" type="Label" parent="."]
+margin_left = 82.0
+margin_top = 75.0
+margin_right = 643.0
+margin_bottom = 106.0
+rect_scale = Vector2( 1.52507, 1.37918 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.631373, 1, 1 )
+text = "Helios-3 is supposed to observe the stellar corona, not the core! Try harder next time! 
+Replaying attempt..."
+align = 1
+
+[node name="tryagain" type="Button" parent="."]
+margin_left = 445.0
+margin_top = 132.0
+margin_right = 563.0
+margin_bottom = 176.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0, 0, 1 )
+text = "Try Again"
+script = ExtResource( 1 )
+
+[node name="System" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="tryagain" to="tryagain" method="_on_tryagain_pressed"]
